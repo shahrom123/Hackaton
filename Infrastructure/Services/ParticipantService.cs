@@ -66,7 +66,7 @@ public class ParticipantService:IParticipantService
     public async Task<GetParticipantDto> GetParticipantById(int id)
     {
         var find = await _context.Participants.
-            Include(e =>e.Group).SingleOrDefaultAsync(x=>x.Id==id);
+            Include(e =>e.Group).Include(e=>e.Location).SingleOrDefaultAsync(x=>x.Id==id);
         if (find != null)
         {
             return  new GetParticipantDto()
